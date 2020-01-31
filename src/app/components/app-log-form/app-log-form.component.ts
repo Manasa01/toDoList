@@ -32,16 +32,24 @@ export class AppLogFormComponent implements OnInit {
         date: new Date()
       };
       this.logService.addLog(newLog);
-    }
-    else{
+    } else {
       const updLog = {
         id: this.id,
         text: this.text,
         date: new Date()
-      }; 
+      };
       this.logService.updateLog(updLog);
     }
 
+    this.clearState();
+  }
+
+  clearState() {
+    this.isNew = true;
+    this.id = "";
+    this.text = "";
+    this.date = "";
+    this.logService.clearState();
   }
 
   generateId() {

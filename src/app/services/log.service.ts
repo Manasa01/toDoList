@@ -14,7 +14,12 @@ export class LogService {
   });
   selectedLog = this.logSource.asObservable();
 
-  constructor() {}
+  private stateSource = new BehaviorSubject<boolean>(true);
+  stateClear = this.stateSource.asObservable();
+
+  constructor() {
+    this.logs = [];
+  }
   getLogs(): Observable<Log[]> {
     if (localStorage.getItem("logs") === null) {
       this.logs = [];
@@ -55,5 +60,7 @@ export class LogService {
 
     localStorage.setItem("logs", JSON.stringify(this.logs));
   }
-
+  clearState(){
+    this.stateSource.next(true);
+  }
 }
