@@ -28,7 +28,7 @@ export class AppLogsComponent implements OnInit {
     this.selectedLog = log;
   }
   onDelete(log: Log) {
-    if (confirm("Are you sure?")) {
+    if (confirm(`Do you wish to delete the task: ${log.text}?`)) {
       this.logService.deleteLog(log);
       if (this.selectedLog.id == log.id) {
         this.logService.setFormLog({ id: "", text: "", date: "" });
